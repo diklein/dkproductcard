@@ -1,0 +1,28 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "dkproductcard",
+  "homepage": "https://github.com/diklein/dkproductcard",
+  "items": [
+    {
+      "name": "dk-product-card",
+      "type": "registry:component",
+      "title": "DKProductCard",
+      "description": "A product card for MDX blogs. Title, description, image, status strip, and note-style bodies. Pairs with the @diklein/dkproductcard remark plugin, which turns bare Amazon URLs into cards automatically.",
+      "dependencies": [
+        "@diklein/dkproductcard"
+      ],
+      "files": [
+        {
+          "path": "registry/dk-product-card/product-card.tsx",
+          "type": "registry:component",
+          "target": "components/dk-product-card/product-card.tsx"
+        },
+        {
+          "path": "registry/dk-product-card/dk-product-card.css",
+          "type": "registry:file",
+          "target": "components/dk-product-card/dk-product-card.css"
+        }
+      ]
+    }
+  ]
+}

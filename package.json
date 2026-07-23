@@ -1,0 +1,55 @@
+{
+  "name": "@diklein/dkproductcard",
+  "version": "0.1.0",
+  "description": "A product card for MDX blogs, with a remark plugin that turns bare Amazon URLs into cards automatically. Paste a link on its own line, get a card. Component distributed through the shadcn registry.",
+  "license": "MIT",
+  "author": "David Klein (https://diklein.com)",
+  "homepage": "https://github.com/diklein/dkproductcard",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./plugin/index.d.ts",
+      "default": "./plugin/index.mjs"
+    }
+  },
+  "files": [
+    "plugin",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "remark",
+    "remark-plugin",
+    "mdx",
+    "amazon",
+    "asin",
+    "product-card",
+    "affiliate",
+    "shadcn",
+    "shadcn-registry"
+  ],
+  "dependencies": {
+    "unist-util-visit": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/mdast": "^4.0.4",
+    "@types/react": "^19.2.17",
+    "react": "^19.2.7",
+    "typescript": "^7.0.2",
+    "unified": "^11.0.5"
+  },
+  "scripts": {
+    "test": "node --test",
+    "typecheck": "tsc --noEmit"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diklein/dkproductcard.git"
+  },
+  "bugs": {
+    "url": "https://github.com/diklein/dkproductcard/issues"
+  }
+}

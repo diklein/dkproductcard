@@ -1,0 +1,162 @@
+/* DKProductCard — theme tokens + every rule the card needs. No Tailwind required.
+ *
+ * Every color routes through a --dkpc-* variable so theming is one override away:
+ *
+ *   .dkpc-scope { --dkpc-accent: rebeccapurple; }
+ *
+ * Dark mode follows the shadcn convention (a `.dark` class on <html>) and falls back to
+ * prefers-color-scheme when no theme class is in play. Fonts default to the system stack;
+ * point --dkpc-font-sans at your own face to match your site. */
+
+.dkpc-scope {
+  --dkpc-fg: #1a1a1a;
+  --dkpc-muted: #6b6b6b;
+  --dkpc-surface: rgb(0 0 0 / 0.05);
+  --dkpc-accent: #e03131;
+  --dkpc-outline: rgb(0 0 0 / 0.1);
+  --dkpc-font-sans: ui-sans-serif, system-ui, sans-serif;
+}
+
+.dark .dkpc-scope {
+  --dkpc-fg: #ededed;
+  --dkpc-muted: #9a9a9a;
+  --dkpc-surface: rgb(255 255 255 / 0.08);
+  --dkpc-outline: rgb(255 255 255 / 0.1);
+}
+
+/* No theme class anywhere up the tree? Track the OS. (:where() keeps specificity at zero
+   so the .dark rule above always wins when present.) */
+@media (prefers-color-scheme: dark) {
+  :where(html:not(.light) .dkpc-scope) {
+    --dkpc-fg: #ededed;
+    --dkpc-muted: #9a9a9a;
+    --dkpc-surface: rgb(255 255 255 / 0.08);
+    --dkpc-outline: rgb(255 255 255 / 0.1);
+  }
+}
+
+.dkpc-root {
+  font-family: var(--dkpc-font-sans);
+  color: var(--dkpc-fg);
+  margin-bottom: 2rem;
+}
+
+/* A run of consecutive cards reads as one group: tighten the gap between them. */
+.dkpc-root:has(+ .dkpc-root) {
+  margin-bottom: 1.5rem;
+}
+
+.dkpc-card {
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--dkpc-outline);
+  color: inherit;
+  text-decoration: none;
+}
+
+.dkpc-linked {
+  transition: border-color 0.15s ease;
+}
+
+.dkpc-linked:hover,
+.dkpc-linked:active {
+  border-color: var(--dkpc-muted);
+}
+
+/* The status strip: a sliver of chrome that labels the card before its content does.
+   Foreground color, not muted: it is a label the eye should catch, and max contrast
+   holds up in both themes. */
+.dkpc-strip {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dkpc-fg);
+  background: var(--dkpc-surface);
+  padding: 0.5rem 1.5rem 0.5rem 1rem;
+}
+
+.dkpc-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 1.5rem;
+}
+
+/* Note-style cards (strip + a sentence): tighter padding, matched to the strip's
+   left inset so the sentence aligns with the strip label. */
+.dkpc-row-note {
+  padding: 0.75rem 1rem 1rem;
+}
+
+.dkpc-image-slot {
+  position: relative;
+  flex-shrink: 0;
+  width: 6rem;
+  height: 6rem;
+}
+
+@media (min-width: 900px) {
+  .dkpc-image-slot {
+    width: 9rem;
+    height: 9rem;
+  }
+}
+
+.dkpc-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.dkpc-title {
+  margin: 0;
+  font-weight: 500;
+  line-height: 1.375;
+}
+
+.dkpc-body {
+  line-height: 1.6;
+}
+
+.dkpc-body p {
+  margin: 0;
+}
+
+/* MDX can hand the body over as bare inline content (no <p> wrapper), which prose
+   selectors like `article p a` never match. Style links on the container instead,
+   so a link in a note card cannot silently render as plain text. */
+.dkpc-body a {
+  color: var(--dkpc-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in oklch, var(--dkpc-accent) 30%, transparent);
+  transition: text-decoration-color 0.15s ease;
+}
+
+.dkpc-body a:hover {
+  text-decoration-color: var(--dkpc-accent);
+}
+
+.dkpc-desc {
+  margin: 0.75rem 0 0;
+  font-size: 1.125rem;
+  color: var(--dkpc-muted);
+}
+
+.dkpc-label {
+  margin: 1rem 0 0;
+  font-size: 1.125rem;
+  color: var(--dkpc-accent);
+}
+
+.dkpc-label-text {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in oklch, var(--dkpc-accent) 30%, transparent);
+  transition: text-decoration-color 0.15s ease;
+}
+
+.dkpc-linked:hover .dkpc-label-text {
+  text-decoration-color: var(--dkpc-accent);
+}
