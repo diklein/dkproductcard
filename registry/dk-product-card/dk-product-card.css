@@ -67,13 +67,13 @@
    Foreground color, not muted: it is a label the eye should catch, and max contrast
    holds up in both themes. */
 .dkpc-strip {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--dkpc-fg);
   background: var(--dkpc-surface);
-  padding: 0.5rem 1.5rem 0.5rem 1rem;
+  padding: 0.625rem 1.5rem 0.625rem 1rem;
 }
 
 .dkpc-row {
@@ -107,6 +107,12 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+/* The body column takes the row's remaining width, so full-width bodies can spread. */
+.dkpc-main {
+  min-width: 0;
+  flex: 1;
 }
 
 .dkpc-title {
