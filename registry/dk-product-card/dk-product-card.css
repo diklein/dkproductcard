@@ -123,6 +123,11 @@
   margin: 0;
 }
 
+/* Multi-paragraph note bodies keep their rhythm; a single sentence stays flush. */
+.dkpc-body p + p {
+  margin-top: 0.75rem;
+}
+
 /* MDX can hand the body over as bare inline content (no <p> wrapper), which prose
    selectors like `article p a` never match. Style links on the container instead,
    so a link in a note card cannot silently render as plain text. */
