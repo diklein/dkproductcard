@@ -87,3 +87,19 @@ test('rewrites every bare URL in a run of consecutive card paragraphs', () => {
   const types = tree.children.map((n) => n.type)
   assert.deepEqual(types, ['mdxJsxFlowElement', 'mdxJsxFlowElement', 'paragraph', 'mdxJsxFlowElement'])
 })
+
+test('rewrites a gfm-autolinked bare URL (link whose label is its URL)', () => {
+  const url = 'https://www.amazon.com/dp/B0ABCDEFGH'
+  const tree = {
+    type: 'root',
+    children: [
+      {
+        type: 'paragraph',
+        children: [{ type: 'link', url, children: [{ type: 'text', value: url }] }],
+      },
+    ],
+  }
+  run(tree)
+  assert.equal(tree.children[0].type, 'mdxJsxFlowElement')
+  assert.equal(tree.children[0].attributes[0].value, 'B0ABCDEFGH')
+})
