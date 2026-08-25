@@ -1,6 +1,6 @@
 {
   "name": "@diklein/dkproductcard",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A product card for MDX blogs, with a remark plugin that turns bare Amazon URLs into cards automatically. Paste a link on its own line, get a card. Component distributed through the shadcn registry.",
   "license": "MIT",
   "author": "David Klein (https://diklein.com)",

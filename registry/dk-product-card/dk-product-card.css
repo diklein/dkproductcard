@@ -39,6 +39,9 @@
   font-family: var(--dkpc-font-sans);
   color: var(--dkpc-fg);
   margin-bottom: 2rem;
+  /* As a flex/grid item the card cooperates with the layout and shrinks;
+     without this its min-content width can blow out a consumer's flex row. */
+  min-width: 0;
 }
 
 /* A run of consecutive cards reads as one group: tighten the gap between them. */
@@ -74,6 +77,7 @@
   color: var(--dkpc-fg);
   background: var(--dkpc-surface);
   padding: 0.625rem 1.5rem 0.625rem 1rem;
+  overflow-wrap: break-word;
 }
 
 .dkpc-row {
@@ -119,10 +123,12 @@
   margin: 0;
   font-weight: 600;
   line-height: 1.375;
+  overflow-wrap: break-word;
 }
 
 .dkpc-body {
   line-height: 1.6;
+  overflow-wrap: break-word;
 }
 
 .dkpc-body p {
@@ -153,6 +159,7 @@
   margin: 0.5rem 0 0;
   font-size: 1.125rem;
   color: var(--dkpc-muted);
+  overflow-wrap: break-word;
 }
 
 .dkpc-label {
