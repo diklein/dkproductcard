@@ -70,13 +70,13 @@
    Foreground color, not muted: it is a label the eye should catch, and max contrast
    holds up in both themes. */
 .dkpc-strip {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--dkpc-fg);
   background: var(--dkpc-surface);
-  padding: 0.625rem 1.5rem 0.625rem 1rem;
+  padding: 0.5rem 1.5rem 0.5rem 1rem;
   overflow-wrap: break-word;
 }
 
@@ -93,17 +93,28 @@
   padding: 0.75rem 1rem 1rem;
 }
 
+/* min-width: 0 lets the text column shrink below an unbreakable token's width —
+   without it, flex min-content sizing keeps the column as wide as the longest
+   word and overflow-wrap never gets the chance to break it. */
+.dkpc-content {
+  min-width: 0;
+  flex: 1;
+}
+
 .dkpc-image-slot {
   position: relative;
   flex-shrink: 0;
   width: 6rem;
-  height: 6rem;
+  /* Stretch to the text column instead of a fixed square, so the image never
+     makes the card taller than its content; the min-height is a floor for
+     near-empty cards. */
+  align-self: stretch;
+  min-height: 6rem;
 }
 
 @media (min-width: 900px) {
   .dkpc-image-slot {
     width: 9rem;
-    height: 9rem;
   }
 }
 
@@ -111,12 +122,9 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-}
-
-/* The body column takes the row's remaining width, so full-width bodies can spread. */
-.dkpc-main {
-  min-width: 0;
-  flex: 1;
+  /* Top-aligned with the title, not centered in the slot: a wide product shot
+     otherwise floats to the middle of the square and reads as a spacing bug. */
+  object-position: top;
 }
 
 .dkpc-title {
@@ -133,11 +141,6 @@
 
 .dkpc-body p {
   margin: 0;
-}
-
-/* Multi-paragraph note bodies keep their rhythm; a single sentence stays flush. */
-.dkpc-body p + p {
-  margin-top: 0.75rem;
 }
 
 /* MDX can hand the body over as bare inline content (no <p> wrapper), which prose

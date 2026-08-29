@@ -74,7 +74,7 @@ export function DKProductCard({
               )}
             </div>
           )}
-          <div className="dkpc-main">
+          <div className="dkpc-content">
             {title && <p className="dkpc-title" dir="auto">{title}</p>}
             {children && <div className="dkpc-body" dir="auto">{children}</div>}
             {description && <p className="dkpc-desc" dir="auto">{description}</p>}
