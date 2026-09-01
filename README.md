@@ -1,3 +1,11 @@
+<!-- The product mark: GitHub serves the ink per theme via <picture>; npm keeps the
+     light asset (it strips <source> but leaves the <img>) and rewrites the relative
+     path to the repo's raw URL. -->
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/mark-dark.svg">
+  <img src="assets/mark-light.svg" width="72" height="72" alt="">
+</picture>
+
 # DKProductCard
 
 A product card for MDX blogs, extracted from [diklein.com](https://diklein.com). Paste an Amazon link on its own line, get a card.
